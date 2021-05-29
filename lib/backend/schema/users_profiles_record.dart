@@ -14,10 +14,17 @@ abstract class UsersProfilesRecord
       _$usersProfilesRecordSerializer;
 
   @nullable
+  DocumentReference get user;
+
+  @nullable
+  int get phone;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
-  static void _initializeBuilder(UsersProfilesRecordBuilder builder) => builder;
+  static void _initializeBuilder(UsersProfilesRecordBuilder builder) =>
+      builder..phone = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users_profiles');
@@ -32,12 +39,18 @@ abstract class UsersProfilesRecord
       _$UsersProfilesRecord;
 }
 
-Map<String, dynamic> createUsersProfilesRecordData() =>
+Map<String, dynamic> createUsersProfilesRecordData({
+  DocumentReference user,
+  int phone,
+}) =>
     serializers.serializeWith(
-        UsersProfilesRecord.serializer, UsersProfilesRecord((u) => u));
+        UsersProfilesRecord.serializer,
+        UsersProfilesRecord((u) => u
+          ..user = user
+          ..phone = phone));
 
 UsersProfilesRecord get dummyUsersProfilesRecord {
-  final builder = UsersProfilesRecordBuilder();
+  final builder = UsersProfilesRecordBuilder()..phone = dummyInteger;
   return builder.build();
 }
 
