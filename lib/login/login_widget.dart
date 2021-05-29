@@ -1,10 +1,8 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../profile/profile_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -191,18 +189,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                               .doc(user.uid)
                               .update(usersRecordData);
 
-                          final uid = currentUserReference;
-                          final phone = int.parse(textController.text);
-
-                          final usersProfilesRecordData =
-                              createUsersProfilesRecordData(
-                            uid: uid,
-                            phone: phone,
-                          );
-
-                          await UsersProfilesRecord.collection
-                              .doc()
-                              .set(usersProfilesRecordData);
                           await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
