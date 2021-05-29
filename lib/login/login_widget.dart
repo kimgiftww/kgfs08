@@ -214,7 +214,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             return;
                           }
 
-                          final displayName = textController1.text;
+                          final displayName = textController2.text;
                           final phone = int.parse(textController2.text);
 
                           final usersRecordData = createUsersRecordData(
