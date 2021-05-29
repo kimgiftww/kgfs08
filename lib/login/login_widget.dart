@@ -1,9 +1,11 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../home_page/home_page_widget.dart';
 import '../profile/profile_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -180,6 +182,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                             return;
                           }
 
+                          final displayName = textController.text;
+
+                          final usersRecordData = createUsersRecordData(
+                            displayName: displayName,
+                          );
+
+                          await currentUserReference.update(usersRecordData);
                           await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
