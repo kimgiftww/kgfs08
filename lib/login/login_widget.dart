@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../profile/profile_widget.dart';
@@ -126,11 +127,21 @@ class _LoginWidgetState extends State<LoginWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          await Navigator.push(
+                          final user = await createAccountWithEmail(
+                            context,
+                            emailTextController.text,
+                            passwordTextController.text,
+                          );
+                          if (user == null) {
+                            return;
+                          }
+
+                          await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
                               builder: (context) => ProfileWidget(),
                             ),
+                            (r) => false,
                           );
                         },
                         text: 'Button',
@@ -156,11 +167,21 @@ class _LoginWidgetState extends State<LoginWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          await Navigator.push(
+                          final user = await signInWithEmail(
+                            context,
+                            emailTextController.text,
+                            passwordTextController.text,
+                          );
+                          if (user == null) {
+                            return;
+                          }
+
+                          await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
                               builder: (context) => ProfileWidget(),
                             ),
+                            (r) => false,
                           );
                         },
                         text: 'Button',
