@@ -179,10 +179,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                             return;
                           }
 
-                          final displayName = textController.text;
+                          final phone = '';
 
                           final usersRecordData = createUsersRecordData(
-                            displayName: displayName,
+                            phone: phone,
                           );
 
                           await UsersRecord.collection

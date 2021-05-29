@@ -30,6 +30,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   Timestamp get createdTime;
 
   @nullable
+  String get phone;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -37,7 +40,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..email = ''
     ..displayName = ''
     ..photoUrl = ''
-    ..uid = '';
+    ..uid = ''
+    ..phone = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -57,6 +61,7 @@ Map<String, dynamic> createUsersRecordData({
   String photoUrl,
   String uid,
   Timestamp createdTime,
+  String phone,
 }) =>
     serializers.serializeWith(
         UsersRecord.serializer,
@@ -65,7 +70,8 @@ Map<String, dynamic> createUsersRecordData({
           ..displayName = displayName
           ..photoUrl = photoUrl
           ..uid = uid
-          ..createdTime = createdTime));
+          ..createdTime = createdTime
+          ..phone = phone));
 
 UsersRecord get dummyUsersRecord {
   final builder = UsersRecordBuilder()
@@ -73,7 +79,8 @@ UsersRecord get dummyUsersRecord {
     ..displayName = dummyString
     ..photoUrl = dummyImagePath
     ..uid = dummyString
-    ..createdTime = dummyTimestamp;
+    ..createdTime = dummyTimestamp
+    ..phone = dummyString;
   return builder.build();
 }
 
