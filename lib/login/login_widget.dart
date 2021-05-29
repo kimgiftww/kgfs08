@@ -21,7 +21,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   void initState() {
     super.initState();
-    emailTextController = TextEditingController(text: 'email');
+    emailTextController = TextEditingController();
     passwordTextController = TextEditingController();
   }
 
@@ -51,7 +51,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           controller: emailTextController,
                           obscureText: false,
                           decoration: InputDecoration(
-                            hintText: '[Some hint text...]',
+                            hintText: 'email',
                             hintStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Poppins',
                             ),
@@ -140,7 +140,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomePageWidget(),
+                              builder: (context) => ProfileWidget(),
                             ),
                             (r) => false,
                           );
@@ -180,7 +180,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomePageWidget(),
+                              builder: (context) => ProfileWidget(),
                             ),
                             (r) => false,
                           );
