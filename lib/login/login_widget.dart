@@ -15,7 +15,8 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController emailTextController;
-  TextEditingController textController;
+  TextEditingController textController1;
+  TextEditingController textController2;
   TextEditingController passwordTextController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -23,7 +24,8 @@ class _LoginWidgetState extends State<LoginWidget> {
   void initState() {
     super.initState();
     emailTextController = TextEditingController();
-    textController = TextEditingController();
+    textController1 = TextEditingController();
+    textController2 = TextEditingController();
     passwordTextController = TextEditingController();
   }
 
@@ -37,7 +39,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           children: [
             Container(
               width: double.infinity,
-              height: 480,
+              height: 600,
               decoration: BoxDecoration(
                 color: Color(0xFFEEEEEE),
               ),
@@ -85,12 +87,45 @@ class _LoginWidgetState extends State<LoginWidget> {
                       )
                     ],
                   ),
+                  TextFormField(
+                    controller: textController1,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      hintText: 'name',
+                      hintStyle: FlutterFlowTheme.bodyText1.override(
+                        fontFamily: 'Poppins',
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(4.0),
+                          topRight: Radius.circular(4.0),
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(4.0),
+                          topRight: Radius.circular(4.0),
+                        ),
+                      ),
+                    ),
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                    ),
+                  ),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: TextFormField(
-                          controller: textController,
+                          controller: textController2,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: 'phone',
@@ -179,8 +214,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                             return;
                           }
 
-                          final displayName = textController.text;
-                          final phone = int.parse(textController.text);
+                          final displayName = textController1.text;
+                          final phone = int.parse(textController2.text);
 
                           final usersRecordData = createUsersRecordData(
                             displayName: displayName,
