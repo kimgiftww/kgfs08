@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'auth/firebase_user_provider.dart';
 import 'package:kgfs08/login/login_widget.dart';
-import 'package:kgfs08/profile/profile_widget.dart';
+import 'package:kgfs08/home_page/home_page_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
               ),
             )
           : currentUser.loggedIn
-              ? ProfileWidget()
+              ? HomePageWidget()
               : LoginWidget(),
     );
   }
