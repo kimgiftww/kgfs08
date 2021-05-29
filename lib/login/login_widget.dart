@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../home_page/home_page_widget.dart';
@@ -15,6 +16,7 @@ class LoginWidget extends StatefulWidget {
 
 class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController emailTextController;
+  TextEditingController textController;
   TextEditingController passwordTextController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -22,6 +24,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   void initState() {
     super.initState();
     emailTextController = TextEditingController();
+    textController = TextEditingController();
     passwordTextController = TextEditingController();
   }
 
@@ -52,6 +55,46 @@ class _LoginWidgetState extends State<LoginWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: 'email',
+                            hintStyle: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Poppins',
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                          ),
+                          style: FlutterFlowTheme.bodyText1.override(
+                            fontFamily: 'Poppins',
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: textController,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintText: 'phone',
                             hintStyle: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Poppins',
                             ),
@@ -136,6 +179,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                           if (user == null) {
                             return;
                           }
+
+                          final phone = int.parse(textController.text);
+
+                          final usersRecordData = createUsersRecordData(
+                            phone: phone,
+                          );
+
+                          await UsersRecord.collection
+                              .doc(user.uid)
+                              .update(usersRecordData);
 
                           await Navigator.pushAndRemoveUntil(
                             context,
