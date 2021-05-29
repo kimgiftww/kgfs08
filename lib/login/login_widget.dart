@@ -19,7 +19,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   void initState() {
     super.initState();
-    emailTextController = TextEditingController();
+    emailTextController = TextEditingController(text: 'email');
     passwordTextController = TextEditingController();
   }
 
