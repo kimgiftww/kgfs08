@@ -180,16 +180,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                             return;
                           }
 
-                          final phone = int.parse(textController.text);
-
-                          final usersRecordData = createUsersRecordData(
-                            phone: phone,
-                          );
-
-                          await UsersRecord.collection
-                              .doc(user.uid)
-                              .update(usersRecordData);
-
                           await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
