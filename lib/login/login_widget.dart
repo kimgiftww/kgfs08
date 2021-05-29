@@ -35,7 +35,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           children: [
             Container(
               width: double.infinity,
-              height: 360,
+              height: 480,
               decoration: BoxDecoration(
                 color: Color(0xFFEEEEEE),
               ),
@@ -177,6 +177,41 @@ class _LoginWidgetState extends State<LoginWidget> {
                             return;
                           }
 
+                          await Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileWidget(),
+                            ),
+                            (r) => false,
+                          );
+                        },
+                        text: 'Button',
+                        options: FFButtonOptions(
+                          width: 130,
+                          height: 40,
+                          color: FlutterFlowTheme.primaryColor,
+                          textStyle: FlutterFlowTheme.subtitle2.override(
+                            fontFamily: 'Poppins',
+                            color: Colors.white,
+                          ),
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: 12,
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      FFButtonWidget(
+                        onPressed: () async {
+                          final user = await signInWithGoogle(context);
+                          if (user == null) {
+                            return;
+                          }
                           await Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
